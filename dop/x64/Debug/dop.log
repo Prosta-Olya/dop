@@ -1,2 +1,3 @@
 ﻿  dop.cpp
-  dop.vcxproj -> C:\Сивер Пр-31\dop\x64\Debug\dop.exe
+  LINK : не найден или не выполнена сборка C:\Сивер Пр-31\dop-main\dop\x64\Debug\dop.exe при последней инкрементной компоновке; выполняется полная компоновка
+  dop.vcxproj -> C:\Сивер Пр-31\dop-main\dop\x64\Debug\dop.exe

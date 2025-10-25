@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 
-struct EventSystem { // с фиксированным массивом
+struct EventSystem {
     void (*handlers[100])(const std::string&);
     int count = 0;
 };
@@ -24,19 +24,6 @@ void triggerEvent(const EventSystem& system, const std::string& message) {
         system.handlers[i](message);
     }
 };
-
-struct DynamicEventSystem { // с динамическим массивом
-    std::vector<void(*)(const std::string&)> handlers;
-};
-void registerDynamicHandler(DynamicEventSystem& system, void(*handler)(const std::string&)) {
-    system.handlers.push_back(handler);
-    std::cout << "Обработчик добавлен.\n";
-}
-void triggerDynamicEvent(const DynamicEventSystem& system, const std::string& message) {
-    for (auto handler : system.handlers) {
-        handler(message);
-    }
-}
 
 void onUserLogin(const std::string& message) {
     std::cout << "Пользователь вошел в систему " << message << "\n";
@@ -86,40 +73,6 @@ int main()
             break;
         }
     } while (menu1 != 5);
-
-    DynamicEventSystem dynamic;
-    std::cout << "Меню для работы с динамическим массивом:\n1 - добавить обработчик входа\n2 - добавить обработчик выхода\n3 - добавить обработчик ошибки\n4 - Вызвать все зарегистрированные события\n5 - Выход\n";
-    int menu2;
-    std::cin >> menu2;
-    std::string str2="";
-    do {
-        switch (menu2) {
-        case 1:
-            registerDynamicHandler(dynamic, onUserLogin);
-            std::cin >> menu2;
-            break;
-        case 2:
-            registerDynamicHandler(dynamic, onUserLogout);
-            std::cin >> menu2;
-            break;
-        case 3:
-            registerDynamicHandler(dynamic, onError);
-            std::cin >> menu2;
-            break;
-        case 4:
-            std::cout << "Введите сообщение message:\n";
-            std::cin >> str2;
-            triggerDynamicEvent(dynamic, str2);
-            std::cin >> menu2;
-            break;
-        case 5:
-            std::cout << "Выход\n";
-            break;
-        default:
-            std::cout << "Ошибка\n";
-            break;
-        }
-    } while (menu2 != 5);
 }
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"

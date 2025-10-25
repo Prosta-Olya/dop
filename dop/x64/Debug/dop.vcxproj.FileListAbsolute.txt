@@ -1,1 +1,2 @@
 C:\Сивер Пр-31\dop\x64\Debug\dop.exe
+C:\Сивер Пр-31\dop-main\dop\x64\Debug\dop.exe
